@@ -3,7 +3,7 @@ Contributors: Amgnando
 Donate link: https://fernandoacosta.net/donate/
 Tags: elementor, column, page builder
 Requires at least: 5.0
-Tested up to: 5.9.3
+Tested up to: 6.8.2
 Stable tag: trunk
 Requires PHP: 7.2
 License: GPLv2 or later
@@ -48,6 +48,9 @@ If you have any issue, please use the support here.
 1. Settings
 
 == Changelog ==
+= 1.5.0 - 2025-09-11 =
+- Update versions and libraries
+
 = 1.4.0 - 2022-04-20 =
 - WPML compatibility
 

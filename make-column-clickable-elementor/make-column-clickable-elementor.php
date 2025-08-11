@@ -5,7 +5,9 @@
  * Description:          Simple: allow users to click in the whole column instead of individual elements
  * Author:               Fernando Acosta
  * Author URI:           https://fernandoacosta.net/?utm_source=wp-org&utm_medium=site&utm_campaign=make-column-clickable
- * Version:              1.4.0
+ * Version:              1.5.0
+ * Elementor tested up to: 3.30
+ * Elementor Pro tested up to: 3.30
  * License:              GPLv2 or later
  *
  * This plugin is free software: you can redistribute it and/or modify
@@ -35,7 +37,7 @@ class Make_Column_Clickable_Elementor {
    *
    * @var float
    */
-  const VERSION = '1.4.0';
+  const VERSION = '1.5.0';
 
   /**
    * Instance of this class.
