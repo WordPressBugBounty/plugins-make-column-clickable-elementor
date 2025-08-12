@@ -1,7 +1,7 @@
 === Make Column Clickable Elementor ===
 Contributors: Amgnando
 Donate link: https://fernandoacosta.net/donate/
-Tags: elementor, column, page builder
+Tags: elementor, column, section, container, page builder
 Requires at least: 5.0
 Tested up to: 6.8.2
 Stable tag: trunk
@@ -9,70 +9,83 @@ Requires PHP: 7.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Simple: allow users to click in the whole column instead of individual elements
+Make entire columns, sections and containers clickable in Elementor — improve navigation and user experience with just one link.
 
 == Description ==
 
-Simple: allow users to click in the whole column instead of individual elements.
+Easily make entire columns, sections and containers clickable in Elementor, not just individual elements.
 
-Users will be able to click in the whole column when you add a link on that.
+Add a link to any column, section or container, and your visitors will be able to click anywhere inside it — perfect for banners, call-to-action areas, and interactive layouts.
 
 = How to use it =
 
-After install the plugin, open your Elementor editor, start editing a Column and under the Layout block you can add your custom link.
+After installing the plugin, open the Elementor editor, select a Column, Section or Container, and under the Layout settings you’ll find a field to add your custom link.
 
-Works with any internal/external link, Lightbox and Elementor PRO popups trigger.
+Works seamlessly with internal and external links, Lightbox, and Elementor PRO popup triggers.
 
-= Looking for custom WooCommerce or Elementor development? Reach us at suporte@fernandoacosta.net =
+= Looking for custom WooCommerce or Elementor development? Contact us at suporte@fernandoacosta.net =
 
 == Installation ==
 
-
-
 == Frequently Asked Questions ==
 
-= How this plugin Works? =
+= How does this plugin work? =
 
-This plugin will add a custom URL field in each column of your Elementor editor. If you fill it, the column will be clickable.
+The plugin adds a custom URL field to every column, section and container in the Elementor editor. Once you add a link, the entire area becomes clickable.
 
-Please note that the plugin works using JavaScript. So it's not an actual
-&lt;a&gt; element. I do recommend you to also add the regular links on your inner elements for SEO and compatibility purposes. So you make sure that columns and default elements are workingl.
+It works using JavaScript, so it doesn’t create a real <a> tag. For best SEO and accessibility, we recommend also adding regular links to inner elements — ensuring both columns and default elements work perfectly.
 
-= What if I found a bug? =
+= What if I find a bug? =
 
-If you have any issue, please use the support here.
-
+If you run into any issues, please open a support request here on the plugin page — we’re happy to help.
 
 == Screenshots ==
 
-1. Settings
 
+1. Settings
 == Changelog ==
+
+= 1.6.0 - 2025-01-11 =
+- Updated for Elementor 3.3+ compatibility
+- Added support for making containers clickable
+- Fixed deprecated hooks for better stability
+
+= 1.5.1 - 2025-09-11 =
+- Added support for making sections clickable
+
 = 1.5.0 - 2025-09-11 =
-- Update versions and libraries
+- Updated versions and libraries
+
 
 = 1.4.0 - 2022-04-20 =
-- WPML compatibility
+- Added WPML compatibility
+
 
 = 1.3.1 - 2019-10-12 =
-* Fix: Prevent illigal offset warning
-* New: Working with multiple popups
+- Fix: Prevent illegal offset warning
+- New: Support for multiple popups
+
 
 = 1.3.0 - 2019-08-27 =
-* New: Support to Elementor Popups and Lightbox
+- New: Support for Elementor Popups and Lightbox
+
 
 = 1.2.1 - 2019-04-16 =
-* New: Support to smooth scroll
-* Fix: Link now works with dynamic content.
+- New: Support for smooth scrolling
+- Fix: Links now work with dynamic content
+
 
 = 1.2.0 - 2019-03-14 =
-* NEW: prevent column redirect when click on custom links or buttons
+- New: Prevent column redirect when clicking on custom links or buttons
+
 
 = 1.1.0 - 2019-02-14 =
-* Fix: new tab links
-* Fix: minor improvements
+- Fix: Links opening in new tabs
+- Fix: Minor improvements
+
 
 = 1.0.0 - 2018-11-21 =
-* First Version
+- First version
+
 
 == Upgrade Notice ==
