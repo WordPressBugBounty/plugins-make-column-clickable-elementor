@@ -18,7 +18,13 @@ jQuery( function( $ ) {
         if ( hash.includes( "elementor-action:action=popup:open" ) || hash.includes( "elementor-action:action=lightbox" ) ) {
 
           if ( 0 === wrapper.find( '#make-column-clickable-open-dynamic' ).length ) {
-            wrapper.append( '<a id="make-column-clickable-open-dynamic" style="display: none !important;" href="' + url + '">Open dynamic content</a>' );
+            var linkElement = $('<a>', {
+              id: 'make-column-clickable-open-dynamic',
+              style: 'display: none !important;',
+              href: url,
+              text: 'Open dynamic content'
+            });
+            wrapper.append( linkElement );
           }
 
           wrapper.find( '#make-column-clickable-open-dynamic' ).click();

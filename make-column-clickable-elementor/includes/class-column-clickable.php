@@ -76,17 +76,26 @@ if ( ! class_exists( 'Make_Column_Clickable_Setup' ) ) :
 			if ( isset( $settings['column_link'], $settings['column_link']['url'] ) && ! empty( $settings['column_link']['url'] ) ) {
 				wp_enqueue_script( 'make-column-clickable-elementor' );
 
+				$url = esc_url( $settings['column_link']['url'] );
+
+				// Whitelist opcional (defesa extra)
+				$parts   = wp_parse_url( $url );
+				$allowed = array( 'http', 'https', 'mailto', 'tel' );
+				if ( empty( $parts['scheme'] ) || ! in_array( strtolower( $parts['scheme'] ), $allowed, true ) ) {
+					$url = '';
+				}
+
 				// start of WPML
 				do_action( 'wpml_register_single_string', 'Make Column Clickable Elementor',
-					'Link - ' . $settings['column_link']['url'], $settings['column_link']['url'] );
-				$settings['column_link']['url'] = apply_filters( 'wpml_translate_single_string',
-					$settings['column_link']['url'], 'Make Column Clickable Elementor',
-					'Link - ' . $settings['column_link']['url'] );
+					'Link - ' . $url, $url );
+				$url = apply_filters( 'wpml_translate_single_string',
+					$url, 'Make Column Clickable Elementor',
+					'Link - ' . $url );
 				// end of WPML
 
 				$element->add_render_attribute( '_wrapper', 'class', 'make-column-clickable-elementor' );
 				$element->add_render_attribute( '_wrapper', 'style', 'cursor: pointer;' );
-				$element->add_render_attribute( '_wrapper', 'data-column-clickable', $settings['column_link']['url'] );
+				$element->add_render_attribute( '_wrapper', 'data-column-clickable', esc_attr( $url ) );
 				$element->add_render_attribute( '_wrapper', 'data-column-clickable-blank',
 					$settings['column_link']['is_external'] ? '_blank' : '_self' );
 			}

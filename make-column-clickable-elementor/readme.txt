@@ -45,15 +45,18 @@ If you run into any issues, please open a support request here on the plugin pag
 1. Settings
 == Changelog ==
 
-= 1.6.0 - 2025-01-11 =
+= 1.6.1 - 2025-09-02 =
+- Better link validations
+
+= 1.6.0 - 2025-08-11 =
 - Updated for Elementor 3.3+ compatibility
 - Added support for making containers clickable
 - Fixed deprecated hooks for better stability
 
-= 1.5.1 - 2025-09-11 =
+= 1.5.1 - 2025-08-11 =
 - Added support for making sections clickable
 
-= 1.5.0 - 2025-09-11 =
+= 1.5.0 - 2025-08-11 =
 - Updated versions and libraries
 
 
