@@ -78,13 +78,6 @@ if ( ! class_exists( 'Make_Column_Clickable_Setup' ) ) :
 
 				$url = esc_url( $settings['column_link']['url'] );
 
-				// Whitelist opcional (defesa extra)
-				$parts   = wp_parse_url( $url );
-				$allowed = array( 'http', 'https', 'mailto', 'tel' );
-				if ( empty( $parts['scheme'] ) || ! in_array( strtolower( $parts['scheme'] ), $allowed, true ) ) {
-					$url = '';
-				}
-
 				// start of WPML
 				do_action( 'wpml_register_single_string', 'Make Column Clickable Elementor',
 					'Link - ' . $url, $url );

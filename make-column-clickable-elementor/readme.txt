@@ -45,6 +45,9 @@ If you run into any issues, please open a support request here on the plugin pag
 1. Settings
 == Changelog ==
 
+= 1.6.2 - 2025-09-13 =
+- Allow relative URLs
+
 = 1.6.1 - 2025-09-02 =
 - Better link validations
 
