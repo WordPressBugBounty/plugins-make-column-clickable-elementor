@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:          Make Column Clickable Elementor
+ * Plugin Name:          Make Column Clickable for Elementor
  * Plugin URI:           https://fernandoacosta.net/make-column-clickable-elementor
  * Description:          Simple: allows users to click anywhere on a column, section, or container instead of only on individual elements.
  * Author:               Fernando Acosta

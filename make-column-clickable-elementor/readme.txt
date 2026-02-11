@@ -1,4 +1,4 @@
-=== Make Column Clickable Elementor ===
+=== Make Column Clickable for Elementor ===
 Contributors: Amgnando
 Donate link: https://fernandoacosta.net/donate/
 Tags: elementor, column, section, container, page builder
@@ -12,6 +12,8 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Make entire columns, sections and containers clickable in Elementor — improve navigation and user experience with just one link.
 
 == Description ==
+
+*Disclaimer: This plugin has no affiliation or support from Elementor Ltd., quite the opposite.*
 
 Easily make entire columns, sections and containers clickable in Elementor, not just individual elements.
 
@@ -40,7 +42,6 @@ It works using JavaScript, so it doesn’t create a real <a> tag. For best SEO a
 If you run into any issues, please open a support request here on the plugin page — we’re happy to help.
 
 == Screenshots ==
-
 
 1. Settings
 == Changelog ==
