@@ -127,30 +127,4 @@
       openInNewTab( link );
     }
   } );
-
-  // Keep inner links and buttons clickable on browsers without CSS :has() support.
-  function raiseInteractiveWidgets() {
-    if ( window.CSS && CSS.supports && CSS.supports( 'selector(:has(a))' ) ) {
-      return;
-    }
-
-    var selector = interactiveSelector.split( ', ' ).map( function( item ) {
-          return wrapperSelector + ' ' + item;
-        } ).join( ', ' ),
-        elements = document.querySelectorAll( selector );
-
-    for ( var i = 0; i < elements.length; i++ ) {
-      var widget = elements[ i ].classList.contains( linkClass ) ? null : elements[ i ].closest( '.elementor-widget' );
-
-      if ( widget ) {
-        widget.classList.add( 'make-column-clickable-raised' );
-      }
-    }
-  }
-
-  if ( 'loading' === document.readyState ) {
-    document.addEventListener( 'DOMContentLoaded', raiseInteractiveWidgets );
-  } else {
-    raiseInteractiveWidgets();
-  }
 } )();

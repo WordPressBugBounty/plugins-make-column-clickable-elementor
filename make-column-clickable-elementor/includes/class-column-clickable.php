@@ -24,6 +24,13 @@ if ( ! class_exists( 'Make_Column_Clickable_Setup' ) ) :
 		 */
 		protected $buffers = [];
 
+		/**
+		 * IDs of the elements being rendered as <a> or <button>, from the outermost to the innermost.
+		 *
+		 * @var array
+		 */
+		protected $link_wrappers = [];
+
 		public function __construct() {
 			add_action( 'wp_enqueue_scripts', [ $this, 'frontend_scripts' ] );
 			add_action( 'elementor/frontend/after_enqueue_styles', [ $this, 'enqueue_frontend_style' ] );
@@ -34,7 +41,7 @@ if ( ! class_exists( 'Make_Column_Clickable_Setup' ) ) :
 				add_action( "elementor/frontend/{$element}/after_render", [ $this, 'after_render_options' ], 10 );
 			}
 
-			add_action( 'elementor/init', [ $this, 'maybe_clear_elementor_cache' ] );
+			add_action( 'elementor/init', [ $this, 'maybe_clear_element_cache' ] );
 			add_action( 'elementor/editor/after_enqueue_scripts', [ $this, 'editor_scripts' ] );
 			add_action( 'wp_ajax_make_column_clickable_dismiss_promo', [ $this, 'dismiss_promo' ] );
 			add_filter( 'plugin_row_meta', [ $this, 'plugin_row_meta' ], 10, 2 );
@@ -145,6 +152,12 @@ if ( ! class_exists( 'Make_Column_Clickable_Setup' ) ) :
 		public function before_render_options( $element ) {
 			$settings = $element->get_settings_for_display();
 
+			$inside_link = ! empty( $this->link_wrappers );
+
+			if ( $this->is_link_tag( $settings ) ) {
+				$this->link_wrappers[] = $element->get_id();
+			}
+
 			if ( ! isset( $settings['column_link'], $settings['column_link']['url'] ) || empty( $settings['column_link']['url'] ) ) {
 				return;
 			}
@@ -174,7 +187,7 @@ if ( ! class_exists( 'Make_Column_Clickable_Setup' ) ) :
 				$element->add_render_attribute( '_wrapper', 'data-column-clickable-track', '1' );
 			}
 
-			if ( ! $this->should_render_link( $element, $settings ) ) {
+			if ( $inside_link || ! $this->should_render_link( $element, $settings ) ) {
 				return;
 			}
 
@@ -202,6 +215,10 @@ if ( ! class_exists( 'Make_Column_Clickable_Setup' ) ) :
 		 * @return void
 		 */
 		public function after_render_options( $element ) {
+			if ( end( $this->link_wrappers ) === $element->get_id() ) {
+				array_pop( $this->link_wrappers );
+			}
+
 			$buffer = end( $this->buffers );
 
 			if ( ! $buffer || $buffer['id'] !== $element->get_id() ) {
@@ -245,7 +262,7 @@ if ( ! class_exists( 'Make_Column_Clickable_Setup' ) ) :
 			}
 
 			// Containers can be rendered as <a> or <button> natively, and links can't be nested.
-			if ( isset( $settings['html_tag'] ) && in_array( $settings['html_tag'], [ 'a', 'button' ], true ) ) {
+			if ( $this->is_link_tag( $settings ) ) {
 				return false;
 			}
 
@@ -256,6 +273,18 @@ if ( ! class_exists( 'Make_Column_Clickable_Setup' ) ) :
 			}
 
 			return (bool) apply_filters( 'make_column_clickable_render_link', true, $element );
+		}
+
+
+		/**
+		 * Whether the element is rendered as <a> or <button>.
+		 *
+		 * @param  array  $settings
+		 *
+		 * @return bool
+		 */
+		protected function is_link_tag( $settings ) {
+			return isset( $settings['html_tag'] ) && in_array( $settings['html_tag'], [ 'a', 'button' ], true );
 		}
 
 
@@ -303,11 +332,11 @@ if ( ! class_exists( 'Make_Column_Clickable_Setup' ) ) :
 
 
 		/**
-		 * Clear the Elementor cache once after each plugin update, so cached pages get the new markup.
+		 * Clear the Elementor element cache once after each plugin update, so cached pages get the new markup.
 		 *
 		 * @return void
 		 */
-		public function maybe_clear_elementor_cache() {
+		public function maybe_clear_element_cache() {
 			$previous_version = get_option( 'make_column_clickable_version' );
 
 			if ( Make_Column_Clickable_Elementor::VERSION === $previous_version ) {
@@ -321,7 +350,20 @@ if ( ! class_exists( 'Make_Column_Clickable_Setup' ) ) :
 				update_option( 'make_column_clickable_upgrade_notice', 1 );
 			}
 
-			\Elementor\Plugin::$instance->files_manager->clear_cache();
+			$this->clear_element_cache();
+		}
+
+
+		/**
+		 * Delete the rendered HTML stored by the Elementor element cache.
+		 *
+		 * Unlike Elementor's "Clear Files & Data", this keeps the CSS files in uploads/elementor/css.
+		 * Deleting them breaks pages served by a page cache, which still point to those files.
+		 *
+		 * @return void
+		 */
+		protected function clear_element_cache() {
+			delete_post_meta_by_key( '_elementor_element_cache' );
 		}
 
 
@@ -367,9 +409,7 @@ if ( ! class_exists( 'Make_Column_Clickable_Setup' ) ) :
 			update_option( 'make_column_clickable_mode', $mode );
 			delete_option( 'make_column_clickable_upgrade_notice' );
 
-			if ( class_exists( '\Elementor\Plugin' ) ) {
-				\Elementor\Plugin::$instance->files_manager->clear_cache();
-			}
+			$this->clear_element_cache();
 
 			wp_safe_redirect( add_query_arg( 'make_column_clickable_mode', $mode, wp_get_referer() ? wp_get_referer() : admin_url( 'plugins.php' ) ) );
 			exit;

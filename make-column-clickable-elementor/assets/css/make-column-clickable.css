@@ -6,29 +6,23 @@
   cursor: pointer;
 }
 
-/* The real link covers the whole column, section or container. */
+/*
+ * The real link covers the whole column, section or container, below its content.
+ * No z-index: the content keeps the stacking order set in Elementor, inner links stay
+ * clickable, and clicks on the content are forwarded to the link by the script.
+ */
 .make-column-clickable-link {
   position: absolute;
   inset: 0;
-  z-index: 1;
   display: block;
   border-radius: inherit;
 }
 
-.make-column-clickable-link:focus-visible {
+/* The link is below the content, so the focus ring goes around the whole element. */
+.make-column-clickable-link:focus-visible,
+.make-column-clickable-elementor:has(> .make-column-clickable-link:focus-visible) {
   outline: 2px solid currentColor;
-  outline-offset: -2px;
-}
-
-/* Keep inner links, buttons and fields clickable above the column link. */
-.make-column-clickable-elementor .elementor-widget:has(a:not(.make-column-clickable-link), button, input, select, textarea, label, summary, iframe, video, audio, [role="button"], .no-link) {
-  z-index: 2;
-}
-
-/* Widgets with the "no-link" class (Advanced → CSS Classes), and the same as above for browsers without :has() support. */
-.make-column-clickable-elementor .elementor-widget.no-link,
-.make-column-clickable-elementor .elementor-widget.make-column-clickable-raised {
-  z-index: 2;
+  outline-offset: 2px;
 }
 
 .make-column-clickable-text {

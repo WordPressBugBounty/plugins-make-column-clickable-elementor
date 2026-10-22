@@ -116,6 +116,12 @@ Please open a support request on the plugin page. We're happy to help.
 
 == Changelog ==
 
+= 1.7.2 - 2026-10-21 =
+- Fix: Clickable elements inside a container whose HTML Tag is "a" or "button" (the Elementor container link) produced a link inside a link, which browsers can't render and broke the layout. These elements now use the JavaScript mode, so both links keep working.
+
+= 1.7.1 - 2026-10-19 =
+- Fix: Updating to 1.7.0 deleted the Elementor CSS files, which broke pages served by a page cache (for example, sections hidden on mobile or desktop showing on every device). Now only the Elementor element cache is cleared.
+
 = 1.7.0 - 2026-10-18 =
 - New: Real HTML links (default), so search engines can crawl them and keyboard and screen reader users can reach them.
 - New: Ctrl/Cmd + click and middle click open the link in a new tab.

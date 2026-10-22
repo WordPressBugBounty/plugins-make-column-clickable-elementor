@@ -5,7 +5,7 @@
  * Description:          Simple: allows users to click anywhere on a column, section, or container instead of only on individual elements.
  * Author:               Fernando Acosta
  * Author URI:           https://fernandoacosta.net/?utm_source=wp-org&utm_medium=site&utm_campaign=make-column-clickable
- * Version:              1.7.0
+ * Version:              1.7.2
  * Elementor tested up to: 4.3
  * Elementor Pro tested up to: 4.3
  * Requires at least: 5.0
@@ -40,7 +40,7 @@ class Make_Column_Clickable_Elementor {
    *
    * @var float
    */
-  const VERSION = '1.7.0';
+  const VERSION = '1.7.2';
 
   /**
    * Instance of this class.
@@ -57,7 +57,7 @@ class Make_Column_Clickable_Elementor {
 
   public function includes() {
     // framework
-    include_once 'includes/class-column-clickable.php';
+    include_once __DIR__ . '/includes/class-column-clickable.php';
   }
 
   /**
